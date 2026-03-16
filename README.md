@@ -1,4 +1,9 @@
-# vgm2wav
+# vgm2wav Fork by Ayden Springer
+This fork updates the build files slightly to work on modern software. It also disables silence detection so you can export multiple NES audio channels without any offset (fully synced tracks).
+
+Currently it is only tested on macOS but I plan to update the build files for cross-platform and release a binary on GitHub so you do not have to build yourself.
+
+# Original README:
 vgm2wav is a simple command-line interface for essential functionality of blargg's [game-music-emu](https://bitbucket.org/mpyne/game-music-emu/wiki/Home) library. It builds off of the demo code that is included in game-music-emu.
 
 vgm2wav converts video game music files (e.g., NES NSF or Super Nintendo SPC) to uncompressed WAV format. 

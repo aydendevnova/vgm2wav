@@ -19,19 +19,18 @@ int main(int argc, char** argv)
 {
     // Command-line arguments
     int vflag = 0;
-    //char *infile = NULL;
-    char infile[80];
+    char infile[80] = {0};
     int iflag = 0;
     int c;
     int t_sec = 30; // default: 30 seconds of wave
-    int tflag;
-    int sel_voice;
+    int tflag = 0;
+    int sel_voice = 0;
     int sflag = 0;
     int oflag = 0;
     int verbose = 0;
     char *outfile = NULL;
-    int trflag;
-    int tr_sel;
+    int trflag = 0;
+    int tr_sel = 0;
 
     if (argc < 2) 
     {
@@ -84,6 +83,12 @@ int main(int argc, char** argv)
     long sample_rate = 44100; /* number of samples per second */
 	int track = ( trflag == 1 ) ? tr_sel : 0; /* index of track to play (0 = first) */
 	
+    if (!iflag && optind < argc)
+    {
+        strncpy(infile, argv[optind], sizeof(infile) - 1);
+        infile[sizeof(infile) - 1] = '\0';
+        iflag = 1;
+    }
     if (!iflag)
         sprintf(infile, "test.nsf");
     if (verbose)
@@ -92,6 +97,11 @@ int main(int argc, char** argv)
     Music_Emu* emu;
 	/* Open music file in new emulator */
 	handle_error( gme_open_file( infile, &emu, sample_rate ) );
+
+	/* Disable silence detection so all channels start from the exact same
+	   emulation time. Without this, GME trims a different amount of leading
+	   silence per channel, causing inter-channel offset when solo rendering. */
+	gme_ignore_silence( emu, 1 );
 	
     /* Get num voices */
     int num_voices = ( vflag == 1 ) ? gme_voice_count( emu ) : 1;

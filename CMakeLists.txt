@@ -9,6 +9,11 @@ project(vgm2wavProject
     DESCRIPTION "Video game music to WAV"
     LANGUAGES C CXX)
 
+# libgme at the pinned revision predates C++11 and needs C++98 mode
+set(CMAKE_CXX_STANDARD 98)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 # FetchContent added in CMake 3.11, downloads during the configure step
 include(FetchContent)
 # FetchContent_MakeAvailable was not added until CMake 3.14

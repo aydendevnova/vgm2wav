@@ -15,3 +15,5 @@ gme/*.swp
 build/*
 libgme/*
 _deps/
+
+.DS_Store
