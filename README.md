@@ -1,4 +1,7 @@
 # vgm2wav Fork by Ayden Springer
+
+Used in my Super Mario Bros in Godot project: https://github.com/aydendevnova/super-mario-bros-in-godot
+
 This fork updates the build files slightly to work on modern software. It also disables silence detection so you can export multiple NES audio channels without any offset (fully synced tracks).
 
 Currently it is only tested on macOS but I plan to update the build files for cross-platform and release a binary on GitHub so you do not have to build yourself.
